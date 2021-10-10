@@ -1,0 +1,43 @@
+{{>layout/header }}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="row justify-content-end">
+            <div class="col-auto mt-3">
+                {{#userName}}
+                    <span id="user">Loggin as : {{userName}}</span>
+                    <a href="/logout" role=button" class="btn btn-info active">로그아웃</a>
+                {{/userName}}
+                {{^userName}}
+                    <a href="/oauth2/authorization/google" role="button" class="btn btn-success active">Google 로그인</a>
+                    <a href="/oauth2/authorization/naver" role="button" class="btn btn-secondary active">네이버 로그인</a>
+                {{/userName}}
+                <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+                <!-- list rendering -->
+                <table class="table table-horizontal table-bordered mt-3">
+                    <thead class="thead-strong">
+                        <tr>
+                            <th>게시글 번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>최종수정일</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    {{#posts}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                            <td>{{author}}</td>
+                            <td>{{modifiedAt}}</td>
+                        </tr>
+                    {{/posts}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{{>layout/footer }}
